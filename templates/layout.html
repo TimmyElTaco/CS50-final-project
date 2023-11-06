@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="static/styles.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/static/img/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit&family=Montserrat&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/647ed99f90.js" crossorigin="anonymous"></script>
+
+    {% block title %}
+    {% endblock %}
+
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a id="home-button" href="/">
+                <img id="logo" src="../static/img/orbe-logo.png" alt="Logo">
+                <span>Edad de Oro</span>
+            </a>
+            <div id="redirection">
+                <ul class="links-header">
+                    <div>
+                        <li><a class="link" href="">Sobre nosotros</a></li>
+                        <div class="line"></div>
+                    </div>
+                    <div>        
+                        <li><a class="link" href="">Funciones</a></li>
+                        <div class="line"></div>
+                    </div>
+                    <div>
+                        <li><a class="link" href="">Contacto</a></li>
+                        <div class="line"></div>
+                    </div>
+                </ul>
+            </div>
+            <div>
+                <ul class="links-header">
+                    <li><a class="link" id="login-button" href="">Iniciar sesión</a></li>
+                    <li><a class="link" id="register-button" href="">Únete</a></li>
+                </ul>
+            </div>
+        </nav>    
+    </header>
+
+    {% block body %}
+    {% endblock %}
+
+    <footer></footer>
+</body>
+</html>
