@@ -1,10 +1,15 @@
 {% extends "layout-form.html" %}
 
+{% block title %}
+    <title>Iniciar Sesion</title>
+{% endblock %}
+
 {% block form %}
     <div id="container-login">
         <div>
             <h2>Inicia sesion</h2>
             <div class="line"></div>
+            <span style="color: rgb(189, 0, 0); display: none">{{ error }}</span>
         </div>
         <form action="/login" method="post">
             <div class="input">

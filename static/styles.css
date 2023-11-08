@@ -195,7 +195,7 @@ p {
     border: none;
     box-shadow: 0px 1px 0px 0px var(--background-light);
     width: 80%;
-    padding: 10px 4px;
+    padding: 10px 6px;
     font-family: Raleway, 'Montserrat', 'Kanit';
     background-color: transparent;
     transition: all 0.3s ease;
@@ -205,6 +205,9 @@ p {
 .input input:focus {
     outline: none;
     box-shadow: 0px 1px 0px 0px var(--text);
+    background-color: var(--text);
+    border-radius: 5px;
+    color: var(--background-light);
 }
 
 .input input::placeholder {

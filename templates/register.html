@@ -1,10 +1,15 @@
 {% extends "layout-form.html" %}
 
+{% block title %}
+    <title>Registrarte</title>
+{% endblock %}
+
 {% block form %}
     <div id="container-login">
         <div>
             <h2>Registrate</h2>
             <div class="line"></div>
+            <span style="color: rgb(189, 0, 0); display: none">{{ error }}</span>
         </div>
         <form action="/register" method="post">
             <div class="input">
@@ -15,6 +20,9 @@
             </div>
             <div class="input">
                 <input type="password" name="password" id="password" placeholder="Contraseña">
+            </div>
+                <div class="input">
+                <input type="password" name="confirmation" id="confirmation" placeholder="Confirmacion">
             </div>
             <div class="input">
                 <input type="text" name="country" id="country" placeholder="Pais">
