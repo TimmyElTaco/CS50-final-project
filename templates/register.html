@@ -1,0 +1,26 @@
+{% extends "layout-form.html" %}
+
+{% block form %}
+    <div id="container-login">
+        <div>
+            <h2>Registrate</h2>
+            <div class="line"></div>
+        </div>
+        <form action="/register" method="post">
+            <div class="input">
+                <input type="text" name="name" id="name" placeholder="Nombre completo">
+            </div>
+            <div class="input">
+                <input type="email" name="email" id="email" placeholder="Email">
+            </div>
+            <div class="input">
+                <input type="password" name="password" id="password" placeholder="Contraseña">
+            </div>
+            <div class="input">
+                <input type="text" name="country" id="country" placeholder="Pais">
+            </div>
+            <p>Si ya tienes una cuenta puedes ir <a href="/login">aqui</a>.</p>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+{% endblock %}

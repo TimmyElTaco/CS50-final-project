@@ -1,25 +1,5 @@
 {% extends "layout-form.html" %}
 
-{% block info %}
-
-    <div id="container-info">
-        <h2>¿Por qué unirte?</h2>
-        <p>
-            En <span>Edad de Oro</span>, estamos comprometidos a brindar apoyo y asistencia a nuestros queridos ancianos. 
-            Nuestra misión es facilitar este proceso, ofreciendo:
-        </p>
-        <p>
-            - Recordatorios: Olvídate de perder citas médicas, eventos importantes o tratamientos. 
-        </p>
-        <p>
-            - Información Relevante: Accede a valiosa información sobre salud, bienestar y consejos útiles para una vida activa y feliz.
-        </p>
-        <p>
-            ¡Únete a nosotros!
-        </p>
-    </div>
-{% endblock %}
-
 {% block form %}
     <div id="container-login">
         <div>
@@ -33,7 +13,7 @@
             <div class="input">
                 <input type="password" name="password" id="password" placeholder="Contraseña">
             </div>
-            <p>Si aun no estas registrado te invitamos a crear una cuenta, solo tienes que presionar <a href="register.html">aqui</a>.</p>
+            <p>Si aun no estas registrado te invitamos a crear una cuenta, solo tienes que presionar <a href="/register">aqui</a>.</p>
             <button type="submit">Enviar</button>
         </form>
     </div>
