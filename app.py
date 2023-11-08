@@ -20,6 +20,42 @@ def index():
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':
+        email = request.form.get("email")
+        password = request.form.get("password")
+
+        if not email:
+            return render_template("login.html", error="Ingresa tu email")
+        elif not password:
+            return render_template("login.html", error="Ingresa tu contraseña")
+
+        try:
+            con = sqlite3.connect("edad-de-oro.db")
+            cur = con.cursor()
+
+            try:
+                cur.execute('SELECT id, email, hash FROM users WHERE email = ?;', (email,))
+                user = cur.fetchall()
+
+                if not user:
+                    return render_template("login.html", error="Email incorrecto")
+                for obj in user:
+                    if not check_password_hash(obj[2], password):
+                        return render_template("login.html", error="Contraseña incorrecta")
+                session["user_id"] = user[0]
+
+            except Exception as e:
+                print(f"Error al consultar la base de datos: {str(e)}")
+            
+            finally:
+                cur.close()
+
+        except Exception as e:
+            print(f"Error al hacer la conexion y crear el cursor: {str(e)}")
+
+        finally:
+            con.commit()
+            con.close()
+
         return redirect('/')
     else:
         return render_template("login.html")
@@ -48,9 +84,12 @@ def register():
             cur = con.cursor()
 
             try:
-                cur.execute('INSERT INTO users(name, email, hash, country) VALUES (?, ?, ?, ?);', (name, email, password, country))
+                cur.execute('SELECT email FROM users;')
+                for obj in cur.fetchall():
+                    if email in obj:
+                        return render_template("register.html", error="Este email ya existe")
 
-            
+                cur.execute('INSERT INTO users(name, email, hash, country) VALUES (?, ?, ?, ?);', (name, email, password, country))            
             
             except Exception as e:
                 print(f"Error en la edicion de la base de datos: {str(e)}")
