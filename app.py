@@ -15,6 +15,10 @@ Session(app)
 
 @app.route('/')
 def index():
+
+    if not session:
+        return redirect('/login')
+    
     return render_template("index.html")
 
 @app.route('/login', methods=['POST', 'GET'])
@@ -107,5 +111,11 @@ def register():
     else:
         return render_template("register.html")
     
+@app.route('/logout')
+def logout():
+    session.clear()
+
+    return redirect('/login')
+        
 if __name__ == '__main__':
     app.run()

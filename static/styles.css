@@ -90,21 +90,25 @@ a {
     background-color: var(--accent-color);
 }
 
-.links-header div li:hover ~ .line {
-    width: 100%;
-}
-
 .line {
     height: 1px;
-    width: 0px;
+    width: 100%;
     background-color: var(--color);
     transition: all 0.3s ease;
+}
+
+.links-header div li:hover ~ .line {
+    box-shadow: 0px 1px 10px 1px var(--color);
 }
 
 /* home styles */
 
 p {
     margin: 0;
+}
+
+section {
+    height: 100vh;
 }
 
 #container-sentence {
