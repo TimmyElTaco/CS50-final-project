@@ -24,7 +24,7 @@
             <div id="redirection">
                 <ul class="links-header">
                     <div>
-                        <li><a class="link" href="">Sobre nosotros</a></li>
+                        <li><a class="link" href="#sobre-nosotros">Sobre nosotros</a></li>
                         <div class="line"></div>
                     </div>
                     <div>        
@@ -49,5 +49,24 @@
     {% endblock %}
 
     <footer></footer>
+    <script>
+        const navbar = document.querySelector('.navbar');
+        let prevScrollPos = window.scrollY;
+
+        let opacity = 1;
+        window.addEventListener('scroll', () => {
+            const currentScrollPos = window.scrollY;
+
+            if (prevScrollPos > currentScrollPos) {
+                opacity = 1;
+                navbar.style.opacity = opacity;
+            } else {
+                opacity -= 0.1;
+                navbar.style.opacity = opacity;
+            }
+
+            prevScrollPos = currentScrollPos;
+        });
+    </script>
 </body>
 </html>

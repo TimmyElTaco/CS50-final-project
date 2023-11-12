@@ -4,6 +4,7 @@
     --color: #C99E26;
     --accent-color: #A4854C;
     --background-light: #191F29;
+    scroll-behavior:smooth;
 }
 
 * {
@@ -22,6 +23,7 @@ a {
 }
 
 .navbar {
+    position: fixed;
     display: flex;
     flex-direction: row;
     color: var(--text);
@@ -29,6 +31,7 @@ a {
     justify-content: space-around;
     background-color: var(--background);
     height: 11vh;
+    width: 100%;
 }
 
 #home-button {
@@ -112,7 +115,7 @@ section {
 }
 
 #container-sentence {
-    height: 89vh;
+    height: 100vh;
     background: linear-gradient(var(--background), var(--background-light));
     display: flex;
     flex-direction: column;
@@ -273,10 +276,18 @@ div p a {
     text-align: left;
 }
 
-#info-login p span {
+#strong-gradient {
     background: radial-gradient(var(--color), #FBE6BA);
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
     background-clip: text;
     font-weight: 700;
+}
+
+/* Responsive login */
+
+@media (max-width: 1100px){
+    #info-login {
+        display: none;
+    }
 }
