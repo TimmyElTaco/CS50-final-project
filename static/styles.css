@@ -17,6 +17,10 @@ body {
     color: var(--text);
 }
 
+h1, h2, h3 {
+    margin: 0;
+}
+
 a {
     text-decoration: none;
     color: var(--text);
@@ -82,13 +86,13 @@ a {
     color: var(--accent-color);
 }
 
-#register-button {
+#logout {
     background-color: var(--color);
     padding: 8px 16px 8px 16px;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
-#register-button:hover {
+#logout:hover {
     color: var(--text);
     background-color: var(--accent-color);
 }
@@ -112,15 +116,14 @@ p {
 
 section {
     height: 100vh;
-}
-
-#container-sentence {
-    height: 100vh;
-    background: linear-gradient(var(--background), var(--background-light));
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+#container-sentence {
+    background: linear-gradient(var(--background) 10%, var(--background-light));
 }
 
 #sentence {
@@ -148,23 +151,69 @@ section {
     transform: rotate(180deg);
 }
 
+/* About us style */
+
+#container-about {
+    background-color: var(--text);
+    color: var(--background-light);
+}
+
+#grid-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 10px;
+    width: 70%;
+}
+
+.about-sections {
+    background-color: var(--color);
+    padding: 40px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.about-sections p {
+    font-size: 18px;
+}
+
+#recordatorio {
+    grid-column: 1;
+    grid-row: 1;
+    background-color: var(--accent-color);
+}
+
+#news {
+    grid-column: 2;
+    grid-row: 1;
+    background-color: var(--background-light);
+    color: var(--text);
+}
+
+#calendar {
+    grid-column: 1/3;
+    grid-row: 2;
+}
+
 /* Login styles */
 
 #body-login {
     height: 100vh;
-    background: linear-gradient(var(--background), var(--background-light));
+    background: linear-gradient(var(--background) 10%, var(--background-light));
 }
 
 #container-info-login {
     display: flex;
+    position: relative;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     width: 65vw;
     height: 80vh;
     background-color: var(--background-light);
-    margin: auto;
     border-radius: 5px;
+    top: 15%;
+    margin: auto;
 }
 
 .login {
@@ -221,6 +270,10 @@ section {
     color: rgba(0, 0, 0, 0.7);
 }
 
+.login-titles {
+    margin: 20px 0px;
+}
+
 h2 ~ .line {
     width: 100%;
     background-color: var(--background);
@@ -231,7 +284,7 @@ h2 ~ .line {
 button[type="submit"] {
     background-color: var(--color);
     border: 0;
-    border-radius: 14px;
+    border-radius: 10px;
     padding: 10px 4px;
     font-family: Raleway, 'Montserrat', 'Kanit';
     font-weight: 700;
@@ -276,7 +329,7 @@ div p a {
     text-align: left;
 }
 
-#strong-gradient {
+.strong-gradient {
     background: radial-gradient(var(--color), #FBE6BA);
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
