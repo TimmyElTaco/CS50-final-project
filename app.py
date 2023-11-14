@@ -1,6 +1,7 @@
-from flask import render_template, request, Flask, session, redirect
+from flask import render_template, request, Flask, session, redirect, jsonify
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_session import Session
+import requests
 
 import sqlite3
 
@@ -18,7 +19,18 @@ def index():
 
     if not session:
         return redirect('/login')
-    
+
+    news = call_api()
+
+    arrNews = []
+    for n in range(0, 3):
+        arrNews.append({})
+        arrNews[n]["title"] = news["articles"][n]["title"]
+        arrNews[n]["url"] = news["articles"][n]["url"]
+        arrNews[n]["img"] = news["articles"][n]["urlToImage"]
+
+    print(arrNews)
+
     return render_template("index.html")
 
 @app.route('/login', methods=['POST', 'GET'])
@@ -116,6 +128,22 @@ def logout():
     session.clear()
 
     return redirect('/login')
+
+def call_api():
+    try:
+        url = ('https://newsapi.org/v2/top-headlines?'
+       'country=mx&'
+       'category=health&'
+       'sortBy=popularity&'
+       'apiKey=c334ef5152a44a348d7e12163028dbc3')
+
+        response = requests.get(url)
+        data = response.json()
+        return data
+
+    except Exception as e:
+        print(f"Error al llamar al API: {str(e)}")
+    
         
 if __name__ == '__main__':
     app.run()
