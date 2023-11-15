@@ -1,8 +1,9 @@
 from flask import render_template, request, Flask, session, redirect, jsonify
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_session import Session
-import requests
 
+import requests
+import random
 import sqlite3
 
 #configuration of application
@@ -22,16 +23,34 @@ def index():
 
     news = call_api()
 
+    print(news)
+
+    imageStockHealth = [
+        "../static/img/image-stock-health1.jpg",
+        "../static/img/image-stock-health2.jpg",
+        "../static/img/image-stock-health3.jpg",
+        "../static/img/image-stock-health4.jpg",
+        "../static/img/image-stock-health5.jpg",
+        "../static/img/image-stock-health6.jpg"
+    ]
+
     arrNews = []
-    for n in range(0, 3):
+    for n in range(0, 5):
         arrNews.append({})
         arrNews[n]["title"] = news["articles"][n]["title"]
         arrNews[n]["url"] = news["articles"][n]["url"]
-        arrNews[n]["img"] = news["articles"][n]["urlToImage"]
 
-    print(arrNews)
+        if news["articles"][n]["urlToImage"] == None:
+            arrNews[n]["img"] = imageStockHealth[random.randint(0, 5)]
+        else:
+            arrNews[n]["img"] = news["articles"][n]["urlToImage"]
+        
+        if news["articles"][n]["description"] == None:
+            arrNews[n]["description"] = ""
+        else:
+            arrNews[n]["description"] = news["articles"][n]["description"]
 
-    return render_template("index.html")
+    return render_template("index.html", news=arrNews)
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
@@ -131,11 +150,11 @@ def logout():
 
 def call_api():
     try:
+        #problemas con el api, tal vez sea mejor cambiarla 
         url = ('https://newsapi.org/v2/top-headlines?'
-       'country=mx&'
-       'category=health&'
-       'sortBy=popularity&'
-       'apiKey=c334ef5152a44a348d7e12163028dbc3')
+            'category=health&'
+            'country=mx&'
+            'apiKey=c334ef5152a44a348d7e12163028dbc3')
 
         response = requests.get(url)
         data = response.json()

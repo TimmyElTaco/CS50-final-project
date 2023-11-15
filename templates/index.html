@@ -15,21 +15,21 @@
         </section>
         <section id="container-about">
             <div id="grid-container">
-                <div class="about-sections" id="recordatorio">
+                <div class="about-sections" id="function1">
                     <h2>No olvides nada!</h2>
                     <p>
                         En Edad de Oro encontraras un apartado para ayudarte a 
                         no olvidar tus citas o medicamentos!                
                     </p>
                 </div>
-                <div class="about-sections" id="news">
+                <div class="about-sections" id="function2">
                     <h2>Mantente informado!</h2>
                     <p>
                         No caigas en Fake news ya que en Edad de Oro encontraras las 
                         noticas de actualidad mas confiables sobre salud.
                     </p>
                 </div>
-                <div class="about-sections" id="calendar">
+                <div class="about-sections" id="function3">
                     <h2>No pierdas tus apoyos economicos!</h2>
                     <p>
                         Si vives en Mexico puedes acceder a este apartado que te ayudara
@@ -40,8 +40,25 @@
             </div>
         </section>
         <section id="container-news">
+            <div id="news-description">
+                <h2>Aqui encontraras las noticias mas relevantes del dia.</h2>
+                <p>
+                    En nuestra sección de noticias de salud, les ofrecemos un espacio dedicado a las últimas novedades y avances en el ámbito médico 
+                    y de bienestar. Mantenemos actualizada esta sección con información relevante, desde descubrimientos científicos hasta consejos 
+                    prácticos para el cuidado personal. Aquí, podrán acceder a artículos, investigaciones y noticias actualizadas que les permitirán 
+                    estar al tanto de los últimos desarrollos en el mundo de la salud. Nuestro objetivo es proporcionarles una fuente confiable de 
+                    información para que puedan tomar decisiones informadas sobre su bienestar y disfrutar de una vida plena y saludable.
+                </p>
+            </div>
             <div id="news">
-                <div></div>
+                {% for new in news %}
+                    <a class="new" href="{{ new["url"] }}">
+                            <div>
+                                <h3>{{ new["title"] }}</h3>
+                            </div>
+                            <img src="{{new["img"]}}" alt="Imagen de la noticia">        
+                    </a>
+                {% endfor %}                
             </div>
         </section>
     </main>
