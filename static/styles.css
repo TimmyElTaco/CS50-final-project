@@ -26,6 +26,10 @@ a {
     color: var(--text);
 }
 
+li {
+    list-style-type: none;
+}
+
 .navbar {
     position: fixed;
     display: flex;
@@ -36,7 +40,27 @@ a {
     background-color: var(--background);
     height: 11vh;
     width: 100%;
-    z-index: 5;
+    margin: 0;
+    flex-wrap: wrap;
+}
+
+#logo {
+    object-fit: cover;
+    height: 100%;
+    width: auto;
+    padding: 10px 8px 10px 10px;
+}
+
+#logout {
+    background-color: var(--color);
+    padding: 8px 16px 8px 16px;
+    border-radius: 10px;
+    margin-right: 40px;
+}
+
+#logout:hover {
+    color: var(--text);
+    background-color: var(--accent-color);
 }
 
 #home-button {
@@ -44,6 +68,7 @@ a {
     flex-direction: row;
     align-items: center;
     height: 80%;
+    margin-right: auto;
     color: var(--color);
     text-decoration: none;
     font-weight: 700;
@@ -57,57 +82,81 @@ a {
     user-select: none;
 }
 
-#logo {
-    object-fit: cover;
-    height: 100%;
-    width: auto;
-    padding: 10px 8px 10px 10px;
-}
-
-.links-header {
-    display: flex;
-    flex-direction: row;
-    text-decoration: none;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    gap: 20px;
-}
-
-#redirection .link {
-    font-weight: 400;
-}
-
-.link{
+.link {
+    margin: 0px 10px;
     font-size: 18px;
     font-weight: 700;
     transition: all 0.3s ease;
+    position: relative;
 }
 
 .link:hover {
     color: var(--accent-color);
+    text-shadow: var(--color) 0px 0px 2px;
 }
 
-#logout {
-    background-color: var(--color);
-    padding: 8px 16px 8px 16px;
-    border-radius: 10px;
-}
-
-#logout:hover {
-    color: var(--text);
-    background-color: var(--accent-color);
-}
-
-.line {
+.link .underline {
+    position: absolute;
+    left: 0;
+    bottom: -2px;
     height: 1px;
-    width: 100%;
+    width: 0;
     background-color: var(--color);
-    transition: all 0.3s ease;
+    transition: all 0.3s ease; 
+}
+  
+.link:hover .underline {
+    width: 100%;    
+    box-shadow: 0px 0px 10px 1px var(--color);
 }
 
-.links-header div li:hover ~ .line {
-    box-shadow: 0px 1px 10px 1px var(--color);
+.toggle {
+    font-size: 24px;
+    display: none;
+} 
+
+/* Responsive navbar */
+
+@media (max-width: 700px) {
+    .navbar {
+        z-index: 5;
+        background-color: var(--background);
+        height: auto;
+        position: fixed;
+        text-align: center;
+        padding: 5px;
+    }
+
+    .item {
+        display: none;
+        width: 100%;
+        padding: 20px 0px;
+        text-align: center;
+    }
+
+    .active .item {
+        display: block;
+    }
+    
+    #home-button {
+        height: auto;
+        margin: 0;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #logo {
+        height: 11vh;
+    }
+
+    #logout {
+        margin: 0;
+    }
+
+    .toggle {
+        font-size: 24px;
+        display: block;
+    } 
 }
 
 /* home styles */
@@ -135,6 +184,7 @@ section {
     align-items: center;
     flex-direction: column;
     width: 70%;
+    padding-top: 11vh;
 }
 
 #sentence p {
@@ -440,19 +490,35 @@ div p a {
         grid-gap: 30px;
     }
 
-    #recordatorio {
+    #container-about {
+        height: auto;
+        margin: 10px;
+    }
+
+    #function1 {
         grid-column: 1;
     }
 
-    #news {
+    #function2 {
         grid-column: 1;
         grid-row: 2;
     }
 
-    #calendar {
+    #function3 {
         grid-column: 1;
         grid-row: 3;
     }
+
+    #news-description {
+        display: none;
+    }
+
+    #container-news {
+        background: none;
+        background-color: var(--background-light);
+    }
+    
+    
 }
 
 /* footer styles */

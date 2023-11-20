@@ -16,33 +16,19 @@
 </head>
 <body>
     <header>
-        <nav class="navbar">
-            <a id="home-button" href="/">
-                <img id="logo" src="../static/img/orbe-logo.png" alt="Logo">
-                <span>Edad de Oro</span>
-            </a>
-            <div id="redirection">
-                <ul class="links-header">
-                    <div>
-                        <li><a class="link" href="#container-about">Sobre nosotros</a></li>
-                        <div class="line"></div>
-                    </div>
-                    <div>        
-                        <li><a class="link" href="#container-news">Noticias</a></li>
-                        <div class="line"></div>
-                    </div>
-                    <div>
-                        <li><a class="link" href="">Contacto</a></li>
-                        <div class="line"></div>
-                    </div>
-                </ul>
-            </div>
-            <div>
-                <ul class="links-header">
-                    <li><a class="link" id="logout" href="/logout">Cerrar Sesion</a></li>
-                </ul>
-            </div>
-        </nav>    
+        <nav>
+            <ul class="navbar">
+                <a id="home-button" href="/">
+                    <img id="logo" src="../static/img/orbe-logo.png" alt="Logo">
+                    <span>Edad de Oro</span>
+                </a>
+                <li class="toggle"><a href="#"><i class="fa-solid fa-bars" style="color: #c99e26;"></i></a></li>
+                <li class="item"><a class="link" href="#container-about">Sobre nosotros<span class="underline"></span></a></li>
+                <li class="item"><a class="link" href="#container-news">Noticias<span class="underline"></span></a></li>
+                <li class="item"><a class="link" href="">Contacto<span class="underline"></span></a></li>
+                <li class="item"><a class="link" id="logout" href="/logout">Cerrar Sesion</a></li>
+            </ul>
+        </nav>
     </header>
 
     {% block body %}
@@ -50,13 +36,11 @@
 
     <footer>
         <div id="container-contact">
-            <div class="line"></div>
             <div id="contact">
                 <a href="https://github.com/TimmyElTaco"><i class="fa-brands fa-github contact-link"></i></a>
                 <a href="https://twitter.com/TimmyElTaco"><i class="fa-brands fa-x-twitter contact-link"></i></a>
                 <a href="mailto:albertpatrsu@gmail.com"><i class="fa-solid fa-envelope contact-link"></i></a>
             </div>
-            <div class="line"></div>
         </div>        
         <p>Creador por: <span class="strong-gradient">Alberto Guzman</span></p>        
         <div id="resources">
@@ -88,6 +72,22 @@
 
             prevScrollPos = currentScrollPos;
         });
+    
+        const toggle = document.querySelector(".toggle");
+        
+        function toggleMenu() {
+            if (navbar.classList.contains("active")) {
+                navbar.classList.remove("active");
+                toggle.querySelector("a").innerHTML = '<i class="fa-solid fa-bars" style="color: #c99e26;"></i>';
+            } else {
+                navbar.classList.add("active");
+                toggle.querySelector("a").innerHTML = '<i class="fa-solid fa-xmark" style="color: #c99e26;"></i>';
+            }
+        }
+
+        toggle.addEventListener('click', toggleMenu);
+        
+
     </script>
 </body>
 </html>
