@@ -23,8 +23,6 @@ def index():
 
     news = call_api()
 
-    print(news)
-
     imageStockHealth = [
         "../static/img/image-stock-health1.jpg",
         "../static/img/image-stock-health2.jpg",
@@ -150,7 +148,6 @@ def logout():
 
 def call_api():
     try:
-        #problemas con el api, tal vez sea mejor cambiarla 
         url = ('https://newsapi.org/v2/top-headlines?'
             'category=health&'
             'country=mx&'

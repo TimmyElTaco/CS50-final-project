@@ -48,7 +48,28 @@
     {% block body %}
     {% endblock %}
 
-    <footer></footer>
+    <footer>
+        <div id="container-contact">
+            <div class="line"></div>
+            <div id="contact">
+                <a href="https://github.com/TimmyElTaco"><i class="fa-brands fa-github contact-link"></i></a>
+                <a href="https://twitter.com/TimmyElTaco"><i class="fa-brands fa-x-twitter contact-link"></i></a>
+                <a href="mailto:albertpatrsu@gmail.com"><i class="fa-solid fa-envelope contact-link"></i></a>
+            </div>
+            <div class="line"></div>
+        </div>        
+        <p>Creador por: <span class="strong-gradient">Alberto Guzman</span></p>        
+        <div id="resources">
+            <a class="resources-link" href="https://newsapi.org/">API</a>
+            <a class="resources-link" href="https://www.freepik.es/">Imagenes</a>
+            <a class="resources-link" href="https://www.bing.com/search?q=Bing+AI&showconv=1&FORM=hpcodx">Logo</a>
+            <p>Tecnologias:</p>
+            <a id="css" href="https://www.w3.org/Style/CSS/"><i class="fa-brands fa-css3-alt"></i></a>
+            <a id="html" href="https://www.w3.org/html/"><i class="fa-brands fa-html5"></i></a>
+            <a id="python" href="https://www.python.org/"><i class="fa-brands fa-python"></i></a>
+            <a id="javascript" href="https://ecma-international.org/publications-and-standards/standards/ecma-262/"><i class="fa-brands fa-square-js"></i></a>
+        </div>
+    </footer>
     <script>
         const navbar = document.querySelector('.navbar');
         let prevScrollPos = window.scrollY;
