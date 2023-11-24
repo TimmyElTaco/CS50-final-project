@@ -33,7 +33,7 @@ def index():
     ]
 
     arrNews = []
-    for n in range(0, 5):
+    for n in range(0, 4):
         arrNews.append({})
         arrNews[n]["title"] = news["articles"][n]["title"]
         arrNews[n]["url"] = news["articles"][n]["url"]
