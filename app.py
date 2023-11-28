@@ -9,11 +9,20 @@ import sqlite3
 #configuration of application
 app = Flask(__name__)
 
+
 #configuration of session
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
+imageStockHealth = [
+        "../static/img/image-stock-health1.jpg",
+        "../static/img/image-stock-health2.jpg",
+        "../static/img/image-stock-health3.jpg",
+        "../static/img/image-stock-health4.jpg",
+        "../static/img/image-stock-health5.jpg",
+        "../static/img/image-stock-health6.jpg"
+    ]
 
 @app.route('/')
 def index():
@@ -22,15 +31,6 @@ def index():
         return redirect('/login')
 
     news = call_api()
-
-    imageStockHealth = [
-        "../static/img/image-stock-health1.jpg",
-        "../static/img/image-stock-health2.jpg",
-        "../static/img/image-stock-health3.jpg",
-        "../static/img/image-stock-health4.jpg",
-        "../static/img/image-stock-health5.jpg",
-        "../static/img/image-stock-health6.jpg"
-    ]
 
     arrNews = []
     for n in range(0, 4):
@@ -140,11 +140,37 @@ def register():
     else:
         return render_template("register.html")
     
+
+@app.route('/noticias')
+def news():
+    news = call_api()
+
+    arrNews = []
+    for n in range(0, 20):
+        arrNews.append({})
+        arrNews[n]["title"] = news["articles"][n]["title"]
+        arrNews[n]["url"] = news["articles"][n]["url"]
+
+        if news["articles"][n]["urlToImage"] == None:
+            arrNews[n]["img"] = imageStockHealth[random.randint(0, 5)]
+        else:
+            arrNews[n]["img"] = news["articles"][n]["urlToImage"]
+        if news["articles"][n]["description"] == None:
+            arrNews[n]["description"] = "Este articulo no cuenta con una descripcion."
+        else:
+            arrNews[n]["description"] = news["articles"][n]["description"]
+        
+        arrNews[n]["author"] = news["articles"][n]["author"]
+
+    return render_template("news.html", news=arrNews)
+
+    
 @app.route('/logout')
 def logout():
     session.clear()
 
-    return redirect('/login')
+    return redirect('/login') 
+
 
 def call_api():
     try:
@@ -160,6 +186,7 @@ def call_api():
     except Exception as e:
         print(f"Error al llamar al API: {str(e)}")
     
+
         
 if __name__ == '__main__':
     app.run()

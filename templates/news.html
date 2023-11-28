@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    
+    <title>Noticias</title>
+
+{% endblock %}
+
+{% block body %}
+
+    <section id="intro-news">
+        <h2>Noticias</h2>
+        <p>
+            Sumérgete en el mundo de la salud con nuestras noticias destacadas y actualizaciones médicas más relevantes. 
+            En nuestra sección de noticias de salud, te mantenemos al día con artículos informativos, 
+            descubrimientos científicos y consejos prácticos para tu bienestar.
+        </p>
+        <p>
+            Explora una variedad de temas que abarcan desde avances en tratamientos médicos hasta consejos para mantener un estilo de vida saludable. 
+            Nuestro equipo se esfuerza por brindarte información precisa y de calidad, proveniente de fuentes confiables y expertos en el campo de la salud.
+        </p>
+        <p>
+            Encuentra reportajes detallados sobre tendencias en nutrición, consejos de ejercicio, 
+            investigaciones médicas innovadoras y todo lo relacionado con el cuidado integral de tu bienestar.
+        </p>
+    </section>
+    {% for new in  news%}
+        <div id="news-page" href="{{ new["url"] }}">
+            <a class="section-new">
+                <div>
+                    <h3>{{ new["title"] }}</h3>
+                    <p>{{ new["description"] }}</p>
+                    <span>{{ new["author"] }}</span>
+                </div>
+                <img src="{{ new["img"] }}">
+            </a>
+        </div>
+    {% endfor %}
+
+{% endblock %}

@@ -15,7 +15,7 @@
 body {
     margin: 0;
     font-family: Raleway, 'Montserrat', 'Kanit';
-    color: var(--white);
+    color: var(--black);
     background-color: var(--white);
 }
 
@@ -277,6 +277,7 @@ section {
     justify-content: center;
     justify-content: space-around;
     color: var(--black-light);
+    margin-bottom: 40px;
 }
 
 #news-description {
@@ -363,7 +364,7 @@ section {
 
 #body-login {
     height: 100vh;
-    background: linear-gradient(var(--black) 10%, var(--black-light));
+    background: var(--white);
 }
 
 #container-info-login {
@@ -375,9 +376,11 @@ section {
     width: 65vw;
     height: 80vh;
     background-color: var(--black-light);
-    border-radius: 5px;
+    overflow: hidden;
+    border-radius: 20px;
     top: 15%;
     margin: auto;
+    box-shadow: 0px 3px 10px 1px rgba(0, 0, 0, 0.6);
 }
 
 .login {
@@ -560,8 +563,6 @@ footer {
     height: 20vh;
 }
 
-
-
 #container-contact{
     display: flex;
     justify-content: space-around;
@@ -624,4 +625,67 @@ footer {
 
 #javascript:hover {
     color: #f1dc55;
+}
+
+/* news page */
+
+#news-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 20px;
+}
+
+#intro-news {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 14vh;
+}
+
+#intro-news p {
+    width: 70%;
+    margin: 10px 0px;
+    font-size: 1rem;
+}
+
+#intro-news h2 {
+    font-size: 3rem;
+}
+
+.section-new {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    overflow: hidden;
+    width: 70%;
+    max-height: 175px;
+    color: var(--black);
+    cursor: pointer;
+    border: 1px solid var(--black);
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    margin: 20px 0px;
+}
+
+.section-new:hover {
+    opacity: 0.6;
+    color: var(--dark-gold);
+    border: 1px solid var(--dark-gold);
+}
+
+.section-new div {
+    grid-column: 1/3;
+    flex: 1;
+    padding: 10px 20px;
+}
+
+.section-new img {
+    grid-column: 3;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
