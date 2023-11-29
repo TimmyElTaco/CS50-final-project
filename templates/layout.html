@@ -27,6 +27,7 @@
                 <li class="item"><a class="link" href="/noticias">Noticias<span class="underline"></span></a></li>
                 <li class="item"><a class="link" href="/recordatorios">Recordatorios<span class="underline"></span></a></li>
                 <li class="item"><a class="link" id="logout" href="/logout">Cerrar Sesion</a></li>
+                <li class="item"><button class="link" id="theme" onclick="toggleTheme()"><i class="fa-solid fa-moon"></i></button></li>
             </ul>
         </nav>
     </header>
@@ -34,7 +35,7 @@
     {% block body %}
     {% endblock %}
 
-    <footer>
+    <footer style="color: #F1F5EF;">
         <div id="container-contact">
             <div id="contact">
                 <a href="https://github.com/TimmyElTaco"><i class="fa-brands fa-github contact-link"></i></a>
@@ -42,16 +43,16 @@
                 <a href="mailto:albertpatrsu@gmail.com"><i class="fa-solid fa-envelope contact-link"></i></a>
             </div>
         </div>        
-        <p style="color: var(--white);">Creador por: <span class="strong-gradient">Alberto Guzman</span></p>        
+        <p>Creador por: <span class="strong-gradient">Alberto Guzman</span></p>        
         <div id="resources">
             <a class="resources-link" href="https://newsapi.org/">API</a>
             <a class="resources-link" href="https://www.freepik.es/">Imagenes</a>
             <a class="resources-link" href="https://www.bing.com/search?q=Bing+AI&showconv=1&FORM=hpcodx">Logo</a>
             <p>Tecnologias:</p>
-            <a id="css" href="https://www.w3.org/Style/CSS/"><i class="fa-brands fa-css3-alt"></i></a>
-            <a id="html" href="https://www.w3.org/html/"><i class="fa-brands fa-html5"></i></a>
-            <a id="python" href="https://www.python.org/"><i class="fa-brands fa-python"></i></a>
-            <a id="javascript" href="https://ecma-international.org/publications-and-standards/standards/ecma-262/"><i class="fa-brands fa-square-js"></i></a>
+            <a class="technologies" id="css" href="https://www.w3.org/Style/CSS/"><i class="fa-brands fa-css3-alt"></i></a>
+            <a class="technologies" id="html" href="https://www.w3.org/html/"><i class="fa-brands fa-html5"></i></a>
+            <a class="technologies" id="python" href="https://www.python.org/"><i class="fa-brands fa-python"></i></a>
+            <a class="technologies" id="javascript" href="https://ecma-international.org/publications-and-standards/standards/ecma-262/"><i class="fa-brands fa-square-js"></i></a>
         </div>
     </footer>
     <script>
@@ -84,9 +85,29 @@
                 toggle.querySelector("a").innerHTML = '<i class="fa-solid fa-xmark" style="color: #c99e26;"></i>';
             }
         }
-
         toggle.addEventListener('click', toggleMenu);
         
+        const theme = document.querySelector("#theme");
+
+        function toggleTheme() {
+            const root = document.documentElement;
+
+            const currentColor = root.style.getPropertyValue('--black');
+
+            if (currentColor === '#00060F') {
+                root.style.setProperty('--white', '#0C1016');
+                root.style.setProperty('--black', '#F1F5EF');
+                root.style.setProperty('--black-light', '#F1F5EF');
+                root.style.setProperty('--border', 'rgba(255, 255, 255, 0.3)');
+                theme.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            } else {
+                root.style.setProperty('--white', '#F1F5EF');
+                root.style.setProperty('--black', '#00060F');
+                root.style.setProperty('--black-light', '#191F29');
+                root.style.setProperty('--border', 'rgba(0, 0, 0, 0.3)');
+                theme.innerHTML = '<i class="fa-solid fa-moon"></i>';
+            }
+        }
 
     </script>
 </body>
