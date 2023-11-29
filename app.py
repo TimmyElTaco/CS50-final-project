@@ -24,31 +24,40 @@ imageStockHealth = [
         "../static/img/image-stock-health6.jpg"
     ]
 
-@app.route('/')
+@app.route('/', methods=['POST', 'GET'])
 def index():
+    if request.method == 'POST':
+        reminder = request.form.get('reminder')
+        date = request.form.get('date')
 
-    if not session:
-        return redirect('/login')
+        if not reminder:
+            return render_template("index.html", error="Ingresa tu recordatorio.")
+        if not date:
+            return render_template("index.html", error="Ingresa una fecha.")
 
-    news = call_api()
+    else: 
+        if not session:
+            return redirect('/login')
 
-    arrNews = []
-    for n in range(0, 4):
-        arrNews.append({})
-        arrNews[n]["title"] = news["articles"][n]["title"]
-        arrNews[n]["url"] = news["articles"][n]["url"]
+        news = call_api()
 
-        if news["articles"][n]["urlToImage"] == None:
-            arrNews[n]["img"] = imageStockHealth[random.randint(0, 5)]
-        else:
-            arrNews[n]["img"] = news["articles"][n]["urlToImage"]
-        
-        if news["articles"][n]["description"] == None:
-            arrNews[n]["description"] = ""
-        else:
-            arrNews[n]["description"] = news["articles"][n]["description"]
+        arrNews = []
+        for n in range(0, 4):
+            arrNews.append({})
+            arrNews[n]["title"] = news["articles"][n]["title"]
+            arrNews[n]["url"] = news["articles"][n]["url"]
 
-    return render_template("index.html", news=arrNews)
+            if news["articles"][n]["urlToImage"] == None:
+                arrNews[n]["img"] = imageStockHealth[random.randint(0, 5)]
+            else:
+                arrNews[n]["img"] = news["articles"][n]["urlToImage"]
+            
+            if news["articles"][n]["description"] == None:
+                arrNews[n]["description"] = ""
+            else:
+                arrNews[n]["description"] = news["articles"][n]["description"]
+
+        return render_template("index.html", news=arrNews)
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
@@ -164,7 +173,7 @@ def news():
 
     return render_template("news.html", news=arrNews)
 
-    
+
 @app.route('/logout')
 def logout():
     session.clear()

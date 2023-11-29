@@ -72,6 +72,9 @@ main {
     background-color: var(--gold);
     padding: 8px 16px 8px 16px;
     border-radius: 10px;
+    cursor: pointer;
+    border: var(--gold);
+    color: var(--black-light);
 }
 
 #logout:hover {
@@ -145,7 +148,9 @@ main {
     display: none;
 } 
 
+
 /* Responsive navbar */
+
 
 @media (max-width: 800px) {
     :root {
@@ -196,7 +201,9 @@ main {
     } 
 }
 
+
 /* home styles */
+
 
 p {
     margin: 0;
@@ -243,7 +250,9 @@ section {
     margin: 20px 0px;
 }
 
+
 /* About us style */
+
 
 #container-about {
     color: var(--black-light);
@@ -286,7 +295,9 @@ section {
     grid-row: 2;
 }
 
+
 /* News styles */
+
 
 #container-news {
     display: flex;
@@ -312,14 +323,14 @@ section {
     margin: 40px 0px;
 }
 
-#news-description a {
+.more{
     color: var(--gold);
     font-size: 1rem;
     transition: all 0.3s ease;
     font-weight: 700;
 }
 
-#news-description a:hover {
+.more:hover {
     text-shadow: var(--gold) 0px 0px 5px;
 }
 
@@ -378,7 +389,53 @@ section {
     overflow: hidden;
 }
 
+
+/* remember section */
+
+
+#container-remember {
+    margin: 20px 0px 40px 0px;
+}
+
+#container-remember p {
+    margin: 20px 0px;
+}
+
+#form-reminder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px 0px 20px 0px;
+    gap: 20px;
+    font-weight: 700;
+    width: 70%;
+}
+
+#form-reminder label {
+    width: 80%;
+}
+
+#form-reminder input {
+    width: 100%;
+    color: var(--black-light);
+    margin: 4px;
+}
+
+#form-reminder input:focus {
+    box-shadow: 0px 0px 3px 1px var(--dark-gold);
+}
+
+#form-reminder button {
+    margin: 0;
+}
+
+
 /* Login styles */
+
 
 #body-login {
     height: 100vh;
@@ -453,7 +510,8 @@ section {
 }
 
 .input input::placeholder {
-    color: rgba(0, 0, 0, 0.7);
+    color: var(--black);
+    opacity: 0.7;
 }
 
 .login-titles {
@@ -523,7 +581,9 @@ div p a {
     font-weight: 700;
 }
 
+
 /* Responsive */
+
 
 @media (max-width: 1100px){
     #info-login {
@@ -569,7 +629,9 @@ div p a {
     
 }
 
+
 /* footer styles */
+
 
 footer {
     display: flex;
@@ -651,7 +713,9 @@ footer {
     color: #f1dc55;
 }
 
+
 /* news page */
+
 
 #news-page {
     display: flex;

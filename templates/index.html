@@ -50,7 +50,7 @@
                     Encuentren artículos, investigaciones y noticias recientes para estar al día en salud. 
                     Queremos ser su fuente confiable de información para decisiones informadas y una vida saludable.
                 </p>
-                <a href="/noticias">Mas noticias! >></a>
+                <a class="more" href="/noticias">Mas noticias! >></a>
             </div>
             <div id="news">
                 {% for new in news %}
@@ -62,6 +62,24 @@
                     </a>
                 {% endfor %}                
             </div>
+        </section>
+        <div id="division"></div>
+        <section id="container-remember">
+            <h2>Recordatorios</h2>
+            <p>¿Que deseas recordar?</p>
+            <form id="form-reminder" action="/" method="post">
+                <span style="color: rgb(189, 0, 0); font-weight: 400;">{{ error }}</span>
+                <label class="input">
+                    Recordar:
+                    <input autocomplete="off" type="text" name="reminder" placeholder="Tomar medicamento">
+                </label>
+                <label class="input">
+                    ¿Cuando?:
+                    <input type="date" name="date">
+                </label>
+                <button type="submit">Guardar</button>
+            </form>
+            <a class="more" href="/recordatorios">Ver mas!>></a>
         </section>
     </main>
 {% endblock %}
