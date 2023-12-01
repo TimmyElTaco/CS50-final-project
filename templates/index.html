@@ -65,21 +65,39 @@
         </section>
         <div id="division"></div>
         <section id="container-remember">
-            <h2>Recordatorios</h2>
-            <p>¿Que deseas recordar?</p>
-            <form id="form-reminder" action="/" method="post">
-                <span style="color: rgb(189, 0, 0); font-weight: 400;">{{ error }}</span>
-                <label class="input">
-                    Recordar:
-                    <input autocomplete="off" type="text" name="reminder" placeholder="Tomar medicamento">
-                </label>
-                <label class="input">
-                    ¿Cuando?:
-                    <input type="date" name="date">
-                </label>
-                <button type="submit">Guardar</button>
-            </form>
-            <a class="more" href="/recordatorios">Ver mas!>></a>
+            <div id="container-form">
+                <h2>Recordatorios</h2>
+                <p>¿Que deseas recordar?</p>
+                <form id="form-reminder" action="/" method="post">
+                    <span style="color: rgb(189, 0, 0); font-weight: 400;">{{ error }}</span>
+                    <label class="input">
+                        Recordar:
+                        <input autocomplete="off" type="text" name="reminder" placeholder="Tomar medicamento">
+                    </label>
+                    <label class="input">
+                        ¿Cuando?:
+                        <input type="date" name="date">
+                    </label>
+                    <button type="submit">Guardar</button>
+                </form>
+                <a class="more" href="/recordatorios">Ver mas!>></a>
+            </div>
+            <div id="container-reminders">
+                <ul id="list-reminders">
+                    <li class="reminder">
+                        <span>a</span>
+                        <button>a</button>
+                    </li>
+                    <li class="reminder">
+                        <span>a</span>
+                        <button>a</button>
+                    </li>
+                    <li class="reminder">
+                        <span>a</span>
+                        <button>a</button>
+                    </li>
+                </ul>
+            </div>
         </section>
     </main>
 {% endblock %}

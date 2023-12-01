@@ -1,6 +1,7 @@
 from flask import render_template, request, Flask, session, redirect, jsonify
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_session import Session
+from datetime import date, datetime
 
 import requests
 import random
@@ -28,12 +29,41 @@ imageStockHealth = [
 def index():
     if request.method == 'POST':
         reminder = request.form.get('reminder')
-        date = request.form.get('date')
-
+        date_user_str = request.form.get('date')
+        
+        date_now = date.today()
+        date_user = datetime.strptime(date_user_str, '%Y-%m-%d').date()        
+        
+        if date_now >= date_user:
+            return render_template("index.html", error="Tienes que ingresar una fecha futura")
         if not reminder:
             return render_template("index.html", error="Ingresa tu recordatorio.")
-        if not date:
+        if not date_user_str:
             return render_template("index.html", error="Ingresa una fecha.")
+        if len(reminder) > 300: 
+            return render_template("index.html", error="Numero de caracteres maximo es de 300.")
+        print(f"{session["user_id"]}")
+        try: 
+            con = sqlite3.connect('edad-de-oro.db')
+            cur = con.cursor()
+
+            try:
+                cur.execute('INSERT INTO reminders (user_id, reminder, date_reminder) VALUES (?, ?, ?);', (session["user_id"], reminder, date_user))
+
+            except Exception as e:
+                print(f"Error al modificar la base de datos: {str(e)}")
+
+            finally:
+                cur.close()
+
+        except Exception as e:
+            print(f"Error al conectar con la base de datos: {str(e)}")
+        
+        finally:
+            con.commit()
+            con.close()
+
+        return redirect('/')
 
     else: 
         if not session:
@@ -83,7 +113,7 @@ def login():
                 for obj in user:
                     if not check_password_hash(obj[2], password):
                         return render_template("login.html", error="Contraseña incorrecta")
-                session["user_id"] = user[0]
+                session["user_id"] = user[0][0]
 
             except Exception as e:
                 print(f"Error al consultar la base de datos: {str(e)}")
