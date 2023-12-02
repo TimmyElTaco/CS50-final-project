@@ -99,7 +99,11 @@
                                 <li class="reminder">
                                     <span>{{ reminder[1] }}</span>
                                     <span class="date-reminder">{{ reminder[2] }}</span>
-                                    <button>Eliminar</button>
+                                    <form action="/delete" method="post">
+                                        <input type="hidden" name="id" value="{{ reminder[0] }}">
+                                        <button type="submit">Eliminar</button>
+                                    </form>
+                                        
                                 </li>
 
                             {% endfor %}
@@ -110,7 +114,10 @@
                                 <li class="reminder">
                                     <span>{{ reminders[n][1] }}</span>
                                     <span class="date-reminder">{{ reminders[n][2] }}</span>
-                                    <button>Eliminar</button>
+                                    <form action="/delete" method="post">
+                                        <input type="hidden" name="id" value="{{ reminders[n][0] }}">
+                                        <button type="submit">Eliminar</button>
+                                    </form>
                                 </li>
 
                             {% endfor %}                            

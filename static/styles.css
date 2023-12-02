@@ -484,7 +484,7 @@ section {
     font-weight: 700;
 }
 
-.reminder button {
+.reminder form button{
     border: 0;
     padding: 5px;
     color: #F1F5EF;
@@ -495,7 +495,7 @@ section {
     transition: all 0.3s ease;
 }
 
-.reminder button:hover {
+.reminder form button:hover {
     background-color: rgb(150, 0, 0);
 }
 

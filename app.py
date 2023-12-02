@@ -43,7 +43,7 @@ def index():
             return render_template("index.html", error="Ingresa una fecha.")
         if len(reminder) > 300: 
             return render_template("index.html", error="Numero de caracteres maximo es de 300.")
-        print(f"{session["user_id"]}")
+
         try: 
             con = sqlite3.connect('edad-de-oro.db')
             cur = con.cursor()
@@ -95,7 +95,6 @@ def index():
             try: 
                 cur.execute('SELECT id, reminder, date_reminder FROM reminders WHERE user_id = ?;', (session["user_id"],))
                 reminders = cur.fetchall()
-                print(f"{reminders}")
 
             except Exception as e:
                 print(f"Error al consultar la base de datos: {str(e)}")
@@ -110,10 +109,33 @@ def index():
             con.commit()
             con.close()
 
-        print(f"{reminders}")
-
         return render_template("index.html", news=arrNews, reminders=reminders)
     
+
+@app.route('/delete', methods=['POST'])
+def delete():
+    id = request.form.get('id')
+    print(f"{id}")
+
+    try:
+        con = sqlite3.connect('edad-de-oro.db')
+        cur = con.cursor()
+
+        try:
+            cur.execute('DELETE FROM reminders WHERE id = ?;', (id,))
+
+        except Exception as e:
+            print(f"Error al conectar con la base de datos: {str(e)}")
+
+    except Exception as e:
+        print(f"Error al crear el cursor: {str(e)}")
+    
+    finally:
+        cur.close()
+        con.commit()
+        cur.close()
+    return redirect('/');
+
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
