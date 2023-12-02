@@ -25,6 +25,7 @@ imageStockHealth = [
         "../static/img/image-stock-health6.jpg"
     ]
 
+
 @app.route('/', methods=['POST', 'GET'])
 def index():
     if request.method == 'POST':
@@ -87,7 +88,32 @@ def index():
             else:
                 arrNews[n]["description"] = news["articles"][n]["description"]
 
-        return render_template("index.html", news=arrNews)
+        try:
+            con = sqlite3.connect('edad-de-oro.db')
+            cur = con.cursor()
+
+            try: 
+                cur.execute('SELECT user_id, reminder, date_reminder FROM reminders;')
+                reminders = cur.fetchall()
+                print(f"{reminders}")
+
+            except Exception as e:
+                print(f"Error al consultar la base de datos: {str(e)}")
+            
+            finally:
+                cur.close()
+
+        except Exception as e:
+            print(f"Error al crear el cursor: {str(e)}")
+
+        finally:
+            con.commit()
+            con.close()
+
+        print(f"{reminders}")
+
+        return render_template("index.html", news=arrNews, reminders=reminders)
+    
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
@@ -131,6 +157,7 @@ def login():
         return redirect('/')
     else:
         return render_template("login.html")
+    
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
@@ -224,7 +251,6 @@ def call_api():
 
     except Exception as e:
         print(f"Error al llamar al API: {str(e)}")
-    
 
         
 if __name__ == '__main__':

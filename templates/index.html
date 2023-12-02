@@ -84,18 +84,27 @@
             </div>
             <div id="container-reminders">
                 <ul id="list-reminders">
+                    
+                    {% if not reminders %}
+
                     <li class="reminder">
-                        <span>a</span>
-                        <button>a</button>
+                        <span>No hay recordatorios, agrega uno!</span>
                     </li>
-                    <li class="reminder">
-                        <span>a</span>
-                        <button>a</button>
-                    </li>
-                    <li class="reminder">
-                        <span>a</span>
-                        <button>a</button>
-                    </li>
+
+                    {% else %}
+
+                        {% for reminder in reminders %}
+                        
+                            <li class="reminder">
+                                <span>{{ reminder[1] }}</span>
+                                <span class="date-reminder">{{ reminder[2] }}</span>
+                                <button>Eliminar</button>
+                            </li>
+
+                        {% endfor %}
+
+                    {% endif %}
+
                 </ul>
             </div>
         </section>

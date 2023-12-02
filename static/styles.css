@@ -475,12 +475,13 @@ section {
     gap: 5px;
 }
 
-.reminder span {
+.reminder span:first-child {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     max-width: 100%;
-    flex: 5;
+    flex: 4;
+    font-weight: 700;
 }
 
 .reminder button {
@@ -491,6 +492,15 @@ section {
     border-radius: 5px;
     flex: 1;
     cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.reminder button:hover {
+    background-color: rgb(150, 0, 0);
+}
+
+.date-reminder {
+    flex: 2;
 }
 
 
@@ -689,6 +699,10 @@ div p a {
     
     #container-reminders {
         display: none;
+    }
+
+    #container-form {
+        flex: 0 0 100%;
     }
 }
 
