@@ -93,7 +93,7 @@ def index():
             cur = con.cursor()
 
             try: 
-                cur.execute('SELECT user_id, reminder, date_reminder FROM reminders;')
+                cur.execute('SELECT id, reminder, date_reminder FROM reminders WHERE user_id = ?;', (session["user_id"],))
                 reminders = cur.fetchall()
                 print(f"{reminders}")
 

@@ -93,16 +93,29 @@
 
                     {% else %}
 
-                        {% for reminder in reminders %}
-                        
-                            <li class="reminder">
-                                <span>{{ reminder[1] }}</span>
-                                <span class="date-reminder">{{ reminder[2] }}</span>
-                                <button>Eliminar</button>
-                            </li>
+                        {% if reminders|length <= 5 %}
+                            {% for reminder in reminders %}
+                            
+                                <li class="reminder">
+                                    <span>{{ reminder[1] }}</span>
+                                    <span class="date-reminder">{{ reminder[2] }}</span>
+                                    <button>Eliminar</button>
+                                </li>
 
-                        {% endfor %}
+                            {% endfor %}
+                        {% else %}
 
+                            {% for n in range(0, 5) %}
+                            
+                                <li class="reminder">
+                                    <span>{{ reminders[n][1] }}</span>
+                                    <span class="date-reminder">{{ reminders[n][2] }}</span>
+                                    <button>Eliminar</button>
+                                </li>
+
+                            {% endfor %}                            
+                            
+                        {% endif %}
                     {% endif %}
 
                 </ul>
