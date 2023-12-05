@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    <title>Recordatorios</title>
+{% endblock %}
+
+{% block body %}
+        <div id="page-reminders">
+            <div id="container-form-reminder">
+                <h2>Recordatorios</h2>
+                <p>En esta seccion podras crear y visitar todos tus recordatorios tanto como las fechas</p>
+                <span style="color: rgb(189, 0, 0); font-weight: 400;">{{ error }}</span>                
+                <form id="page-form-reminder" action="/recordatorios" method="post">
+                    <label class="input">
+                        Recordar:
+                        <input autocomplete="off" type="text" name="reminder" placeholder="Tomar medicamento">
+                    </label>
+                    <label class="input">
+                        ¿Cuando?:
+                        <input type="date" name="date">
+                    </label>
+                    <button type="submit">Guardar</button>
+                </form>
+            </div>
+        <div id="page-reminders-list">
+            <ul id="list-reminders" style="margin: 0;">
+
+                {% if not reminders %}
+                    <li class="reminder">
+                        <span>No hay recordatorios, agrega uno!</span>
+                    </li>
+                {% else %}
+                    {% for reminder in reminders %}                    
+                        <li class="reminder">
+                            <span>{{ reminder[1] }}</span>
+                            <span class="date-reminder">{{ reminder[2] }}</span>
+                            <form action="/delete" method="post">
+                                <input type="hidden" name="id" value="{{ reminder[0] }}">
+                                <button type="submit">Eliminar</button>
+                            </form>            
+                        </li>
+                    {% endfor %}
+                {% endif %}
+
+            </ul>
+        </div>
+    </div>
+{% endblock  %}

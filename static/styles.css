@@ -256,6 +256,7 @@ section {
 
 
 #container-about {
+    height: 70vh;
     color: var(--black-light);
     margin: 40px 0px;
 }
@@ -308,6 +309,7 @@ section {
     justify-content: space-around;
     color: var(--black-light);
     margin-bottom: 40px;
+    height: 70vh;
 }
 
 #news-description {
@@ -400,6 +402,7 @@ section {
     align-items: center;
     justify-content: space-between;
     margin: 20px 0px 40px 0px;
+    height: 70vh;
 }
 
 #container-remember p {
@@ -416,7 +419,7 @@ section {
 }
 
 #container-reminders {
-    max-width: 45%;
+    width: 100%;
     flex: 0 0 50%;
 }
 
@@ -427,28 +430,28 @@ section {
     justify-content: center;
     border: 1px solid var(--border);
     border-radius: 10px;
-    padding: 15px;
+    padding: 15px 15px 30px 15px;
     margin: 10px 0px 20px 0px;
     gap: 20px;
     font-weight: 700;
     width: 100%;
 }
 
-#form-reminder label {
+#form-reminder label, #page-form-reminder label {
     width: 80%;
 }
 
-#form-reminder input {
+#form-reminder input, #page-form-reminder input {
     width: 100%;
     color: var(--black-light);
     margin: 4px;
 }
 
-#form-reminder input:focus {
+#form-reminder input:focus, #page-form-reminder input:focus {
     box-shadow: 0px 0px 3px 1px var(--dark-gold);
 }
 
-#form-reminder button {
+#form-reminder button, #page-form-reminder button {
     margin: 0;
 }
 
@@ -457,12 +460,12 @@ section {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    max-width: 100%;
-    height: 100%;
+    width: 100%;
     border: 1px solid var(--border);
     box-shadow: 0px 3px 5px 1px var(--border);
     border-radius: 10px;
     padding: 10px;
+    z-index: -1;
 }
 
 .reminder {
@@ -835,7 +838,7 @@ footer {
     border: 1px solid var(--border);
     border-radius: 10px;
     transition: all 0.3s ease;
-    margin: 20px 0px;
+    margin: 10px 0px;
 }
 
 .section-new:hover {
@@ -855,4 +858,40 @@ footer {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+
+/* page reminders */
+
+
+#page-reminders {
+    padding-top: 14vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    margin: 0px 0px 20px 0px;
+}
+
+#page-reminders-list {
+    width: 70%;
+}
+
+#page-form-reminder {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 15px 15px 15px 15px;
+    margin: 10px 0px 20px 0px;
+    gap: 20px;
+    font-weight: 700;
+    width: 100%;
+}
+
+#container-form-reminder {
+    width: 70%;
 }

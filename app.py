@@ -31,83 +31,19 @@ def index():
     if request.method == 'POST':
         reminder = request.form.get('reminder')
         date_user_str = request.form.get('date')
-        
-        date_now = date.today()
-        date_user = datetime.strptime(date_user_str, '%Y-%m-%d').date()        
-        
-        if date_now >= date_user:
-            return render_template("index.html", error="Tienes que ingresar una fecha futura")
-        if not reminder:
-            return render_template("index.html", error="Ingresa tu recordatorio.")
-        if not date_user_str:
-            return render_template("index.html", error="Ingresa una fecha.")
-        if len(reminder) > 300: 
-            return render_template("index.html", error="Numero de caracteres maximo es de 300.")
 
-        try: 
-            con = sqlite3.connect('edad-de-oro.db')
-            cur = con.cursor()
-
-            try:
-                cur.execute('INSERT INTO reminders (user_id, reminder, date_reminder) VALUES (?, ?, ?);', (session["user_id"], reminder, date_user))
-
-            except Exception as e:
-                print(f"Error al modificar la base de datos: {str(e)}")
-
-            finally:
-                cur.close()
-
-        except Exception as e:
-            print(f"Error al conectar con la base de datos: {str(e)}")
-        
-        finally:
-            con.commit()
-            con.close()
-
-        return redirect('/')
+        if add_reminders(date_user_str, reminder):
+            return redirect('/#container-reminders')
+        else:
+            return render_template("index.html", error="Datos incorrectos, favor de comprobarlos de nuevo.") 
 
     else: 
         if not session:
             return redirect('/login')
 
-        news = call_api()
+        arrNews = get_news(4)
 
-        arrNews = []
-        for n in range(0, 4):
-            arrNews.append({})
-            arrNews[n]["title"] = news["articles"][n]["title"]
-            arrNews[n]["url"] = news["articles"][n]["url"]
-
-            if news["articles"][n]["urlToImage"] == None:
-                arrNews[n]["img"] = imageStockHealth[random.randint(0, 5)]
-            else:
-                arrNews[n]["img"] = news["articles"][n]["urlToImage"]
-            
-            if news["articles"][n]["description"] == None:
-                arrNews[n]["description"] = ""
-            else:
-                arrNews[n]["description"] = news["articles"][n]["description"]
-
-        try:
-            con = sqlite3.connect('edad-de-oro.db')
-            cur = con.cursor()
-
-            try: 
-                cur.execute('SELECT id, reminder, date_reminder FROM reminders WHERE user_id = ?;', (session["user_id"],))
-                reminders = cur.fetchall()
-
-            except Exception as e:
-                print(f"Error al consultar la base de datos: {str(e)}")
-            
-            finally:
-                cur.close()
-
-        except Exception as e:
-            print(f"Error al crear el cursor: {str(e)}")
-
-        finally:
-            con.commit()
-            con.close()
+        reminders = get_reminders()
 
         return render_template("index.html", news=arrNews, reminders=reminders)
     
@@ -134,7 +70,7 @@ def delete():
         cur.close()
         con.commit()
         cur.close()
-    return redirect('/');
+    return redirect('/recordatorios')
 
 
 @app.route('/login', methods=['POST', 'GET'])
@@ -231,10 +167,39 @@ def register():
 
 @app.route('/noticias')
 def news():
-    news = call_api()
+    arrNews = get_news(20)
 
+    return render_template("news.html", news=arrNews)
+
+
+@app.route('/recordatorios', methods=['POST', 'GET'])
+def reminders():
+    if request.method == 'POST':
+        reminder = request.form.get('reminder')
+        date_user_str = request.form.get('date')
+
+        if add_reminders(date_user_str, reminder):
+            return redirect('/recordatorios')
+        else:
+            return render_template("reminders.html", error="Datos incorrectos, favor de comprobarlos de nuevo.") 
+
+    else:
+        reminders = get_reminders()
+        return render_template('reminders.html', reminders=reminders)
+
+
+@app.route('/logout')
+def logout():
+    session.clear()
+
+    return redirect('/login') 
+
+
+def get_news(times):
+    news = call_api()
     arrNews = []
-    for n in range(0, 20):
+
+    for n in range(0, times):
         arrNews.append({})
         arrNews[n]["title"] = news["articles"][n]["title"]
         arrNews[n]["url"] = news["articles"][n]["url"]
@@ -249,15 +214,65 @@ def news():
             arrNews[n]["description"] = news["articles"][n]["description"]
         
         arrNews[n]["author"] = news["articles"][n]["author"]
+    return arrNews
 
-    return render_template("news.html", news=arrNews)
+
+def add_reminders(date_user_str, reminder):
+    if not date_user_str or not reminder or len(reminder) > 300:
+        return False
+    
+    date_now = date.today()
+    date_user = datetime.strptime(date_user_str, '%Y-%m-%d').date()        
+
+    if date_now >= date_user:
+        return False
+
+    try: 
+        con = sqlite3.connect('edad-de-oro.db')
+        cur = con.cursor()
+
+        try:
+            cur.execute('INSERT INTO reminders (user_id, reminder, date_reminder) VALUES (?, ?, ?);', (session["user_id"], reminder, date_user))
+
+        except Exception as e:
+            print(f"Error al modificar la base de datos: {str(e)}")
+
+        finally:
+            cur.close()
+
+    except Exception as e:
+        print(f"Error al conectar con la base de datos: {str(e)}")
+    
+    finally:
+        con.commit()
+        con.close()
+
+    return True
 
 
-@app.route('/logout')
-def logout():
-    session.clear()
+def get_reminders():
+    try:
+        con = sqlite3.connect('edad-de-oro.db')
+        cur = con.cursor()
 
-    return redirect('/login') 
+        try: 
+            cur.execute('SELECT id, reminder, date_reminder FROM reminders WHERE user_id = ?;', (session["user_id"],))
+            reminders = cur.fetchall()
+
+        except Exception as e:
+            print(f"Error al consultar la base de datos: {str(e)}")
+        
+        finally:
+            cur.close()
+
+    except Exception as e:
+        print(f"Error al crear el cursor: {str(e)}")
+
+    finally:
+        con.commit()
+        con.close()
+
+    return reminders;
 
 
 def call_api():
