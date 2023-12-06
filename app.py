@@ -186,8 +186,9 @@ def reminders():
             return render_template("reminders.html", error="Datos incorrectos, favor de comprobarlos de nuevo.") 
 
     else:
+        supports = get_support()
         reminders = get_reminders()
-        return render_template('reminders.html', reminders=reminders)
+        return render_template('reminders.html', reminders=reminders, supports=supports)
 
 
 @app.route('/logout')
@@ -199,15 +200,9 @@ def logout():
 
 @app.route('/admin', methods=['POST', 'GET'])
 def add_support():
-    if request.method == 'GET':
-        if session["user_id"] != 1:
-            return redirect('/')
-        else:
-            return render_template("add-support.html")
-    else:
+    if request.method == 'POST':
         date = request.form.get('date')
         letters = request.form.get('letters')
-        print("test")
         if not date or not letters:
             return redirect('/')
         
@@ -230,8 +225,12 @@ def add_support():
         finally:
             con.commit()
             con.close()
-        return redirect('/recordatorios')
-
+        return redirect('/admin')
+    else: 
+        if session["user_id"] != 1:
+            return redirect('/')
+        else:
+            return render_template("add-support.html")
 
 def check_email(email):
     try:
@@ -320,6 +319,31 @@ def get_reminders():
         con.close()
 
     return reminders;
+
+
+def get_support():
+    try:
+        con = sqlite3.connect('edad-de-oro.db')
+        cur = con.cursor()
+
+        try: 
+            cur.execute('SELECT date, letters FROM supports;')
+            support = cur.fetchall()
+
+        except Exception as e:
+            print(f"Error al consultar la base de datos: {str(e)}")
+        
+        finally:
+            cur.close()
+
+    except Exception as e:
+        print(f"Error al crear el cursor: {str(e)}")
+
+    finally:
+        con.commit()
+        con.close()
+
+    return support;
 
 
 def call_api():

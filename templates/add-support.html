@@ -7,7 +7,7 @@
 {% block body %}
     <div id="admin-container">
         <p>Solo para admin y para agregar los recordatorios de support al reminders</p>
-        <form action="/admin">
+        <form action="/admin" method="post">
             <label>
                 <input type="date" name="date">
                 <input type="text" name="letters" placeholder="Letras" autocomplete="off">
