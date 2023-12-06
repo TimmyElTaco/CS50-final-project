@@ -657,61 +657,6 @@ div p a {
 }
 
 
-/* Responsive */
-
-
-@media (max-width: 1100px){
-    #info-login {
-        display: none;
-    }
-
-    #grid-container {
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(3, 1fr);
-        grid-gap: 30px;
-    }
-
-    #container-about {
-        height: auto;
-        margin: 10px;
-    }
-
-    #function1 {
-        grid-column: 1;
-    }
-
-    #function2 {
-        grid-column: 1;
-        grid-row: 2;
-    }
-
-    #function3 {
-        grid-column: 1;
-        grid-row: 3;
-    }
-
-    #news-description {
-        display: none;
-    }
-
-    #container-news {
-        background: none;
-    }
-    
-    #news {
-        margin: 0;
-    }
-    
-    #container-reminders {
-        display: none;
-    }
-
-    #container-form {
-        flex: 0 0 100%;
-    }
-}
-
-
 /* footer styles */
 
 
@@ -870,7 +815,7 @@ footer {
     align-items: center;
     flex-direction: column;
     width: 100%;
-    height: 100vh;
+    height: auto;
     margin: 0px 0px 20px 0px;
 }
 
@@ -894,6 +839,45 @@ footer {
 
 #container-form-reminder {
     width: 70%;
+}
+
+#supports {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    margin-top: 40px;
+    gap: 20px;
+}
+
+#list-supports {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0px 1px 5px 0.5px var(--border);
+    font-size: 1.1rem;
+    padding: 10px;
+    margin: 0;
+    width: 40%;
+}
+
+#list-supports li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    border-bottom: 1px solid var(--border);
+    padding: 1px 10px;
+}
+
+.letter {
+    color: #158900;
+    font-weight: 700;
+}
+
+.date {
+    font-weight: 700;
+    font-size: 1rem;
 }
 
 
@@ -928,4 +912,59 @@ footer {
     padding: 10px;
     font-size: 1.1rem;
     border-radius: 10px;
+}
+
+
+/* responsive */
+
+
+@media (max-width: 1100px){
+    #info-login {
+        display: none;
+    }
+
+    #grid-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, 1fr);
+        grid-gap: 30px;
+    }
+
+    #container-about {
+        height: auto;
+        margin: 10px;
+    }
+
+    #function1 {
+        grid-column: 1;
+    }
+
+    #function2 {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    #function3 {
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+    #news-description {
+        display: none;
+    }
+    
+    #news {
+        margin: 0;
+    }
+    
+    #container-reminders {
+        display: none;
+    }
+
+    #container-form {
+        flex: 0 0 100%;
+    }
+
+    #list-supports {
+        width: 100%;
+    }
 }

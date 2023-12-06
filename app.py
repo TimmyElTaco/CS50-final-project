@@ -186,9 +186,11 @@ def reminders():
             return render_template("reminders.html", error="Datos incorrectos, favor de comprobarlos de nuevo.") 
 
     else:
-        supports = get_support()
+        response = get_support()
         reminders = get_reminders()
-        return render_template('reminders.html', reminders=reminders, supports=supports)
+        country = response["country"][0]
+        response["country"] = country.lower()
+        return render_template('reminders.html', reminders=reminders, response=response)
 
 
 @app.route('/logout')
@@ -328,7 +330,10 @@ def get_support():
 
         try: 
             cur.execute('SELECT date, letters FROM supports;')
-            support = cur.fetchall()
+            response = {}
+            response["supports"] = cur.fetchall()
+            cur.execute('SELECT country FROM users WHERE id = ?', (session["user_id"],))
+            response["country"] = cur.fetchone()
 
         except Exception as e:
             print(f"Error al consultar la base de datos: {str(e)}")
@@ -343,7 +348,7 @@ def get_support():
         con.commit()
         con.close()
 
-    return support;
+    return response;
 
 
 def call_api():
