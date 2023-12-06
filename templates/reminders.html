@@ -8,7 +8,10 @@
         <div id="page-reminders">
             <div id="container-form-reminder">
                 <h2>Recordatorios</h2>
-                <p>En esta seccion podras crear y visitar todos tus recordatorios tanto como las fechas</p>
+                <p>
+                    En esta seccion podras crear y visitar todos tus recordatorios, tambien aqui encontraras las fechas para la <span class="strong-gradient">entrega de ayudas</span>
+                    que da el gobierno de Mexico, solo desplazate a la parte inferior.                    
+                </p>
                 <span style="color: rgb(189, 0, 0); font-weight: 400;">{{ error }}</span>                
                 <form id="page-form-reminder" action="/recordatorios" method="post">
                     <label class="input">
@@ -43,6 +46,9 @@
                 {% endif %}
 
             </ul>
+        </div>
+        <div id="supports">
+            
         </div>
     </div>
 {% endblock  %}

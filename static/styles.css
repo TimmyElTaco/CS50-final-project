@@ -419,7 +419,7 @@ section {
 }
 
 #container-reminders {
-    width: 100%;
+    max-width: 45%;
     flex: 0 0 50%;
 }
 
@@ -479,9 +479,9 @@ section {
 }
 
 .reminder span:first-child {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    font-size: 1rem;
+    overflow: auto;
+    white-space: wrap;
     max-width: 100%;
     flex: 4;
     font-weight: 700;

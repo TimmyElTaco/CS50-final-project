@@ -2,6 +2,8 @@ from flask import render_template, request, Flask, session, redirect, jsonify
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_session import Session
 from datetime import date, datetime
+from email_validator import validate_email, EmailNotValidError
+
 
 import requests
 import random
@@ -128,7 +130,7 @@ def register():
 
         if not name:
             return render_template("register.html", error="Introduce tu nombre")
-        elif not email:
+        elif not email or check_email(email):
             return render_template("register.html", error="Introduce tu correo electronico")
         elif not country:
             return render_template("register.html", error="Introduce tu pais")
@@ -193,6 +195,26 @@ def logout():
     session.clear()
 
     return redirect('/login') 
+
+
+@app.route('/admin', methods=['POST', 'GET'])
+def add_support():
+    if request.method == 'GET':
+        if session["user_id"] != 1:
+            return redirect('/')
+        else:
+            return render_template("add-support.html")
+    else:
+        return render_template("add-support.html")
+
+
+def check_email(email):
+    try:
+        v = validate_email(email)
+        email = v.email
+        return False
+    except EmailNotValidError as e:
+        return True
 
 
 def get_news(times):

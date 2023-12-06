@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    <title>Admin</title>
+{% endblock  %}
+
+{% block body %}
+    <div>
+        <form action="/admin">
+            <label for="">
+                <input type="date" name="date">
+                <input type="text" name="letters">
+            </label>
+            <button type="submit"></button>
+        </form>
+    </div>
+{% endblock  %}
