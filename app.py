@@ -205,7 +205,32 @@ def add_support():
         else:
             return render_template("add-support.html")
     else:
-        return render_template("add-support.html")
+        date = request.form.get('date')
+        letters = request.form.get('letters')
+        print("test")
+        if not date or not letters:
+            return redirect('/')
+        
+        try: 
+            con = sqlite3.connect('edad-de-oro.db')
+            cur = con.cursor()
+
+            try:
+                cur.execute('INSERT INTO supports (date, letters) VALUES (?, ?);', (date, letters))
+
+            except Exception as e:
+                print(f"Error al modificar la base de datos: {str(e)}")
+
+            finally:
+                cur.close()
+
+        except Exception as e:
+            print(f"Error al conectar con la base de datos: {str(e)}")
+        
+        finally:
+            con.commit()
+            con.close()
+        return redirect('/recordatorios')
 
 
 def check_email(email):

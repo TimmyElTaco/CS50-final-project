@@ -895,3 +895,37 @@ footer {
 #container-form-reminder {
     width: 70%;
 }
+
+
+/* admin page */
+
+
+#admin-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 11vh;
+    height: 90vh;
+}
+
+#admin-container p {
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+#admin-container form {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+#admin-container input {
+    padding: 10px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+}

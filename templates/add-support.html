@@ -5,13 +5,14 @@
 {% endblock  %}
 
 {% block body %}
-    <div>
+    <div id="admin-container">
+        <p>Solo para admin y para agregar los recordatorios de support al reminders</p>
         <form action="/admin">
-            <label for="">
+            <label>
                 <input type="date" name="date">
-                <input type="text" name="letters">
+                <input type="text" name="letters" placeholder="Letras" autocomplete="off">
             </label>
-            <button type="submit"></button>
+            <button type="submit">Guardar</button>
         </form>
     </div>
 {% endblock  %}
