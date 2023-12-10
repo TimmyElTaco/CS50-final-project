@@ -14,11 +14,11 @@ My final project is a website aimed at assisting the elderly with reminders, pro
 
 For the validation of the page I use the libraries **werkzeug** for create a hash for the password, **email validation** for the email and **flask session** to track the current user, you can register and all the information goes to the table users:
 
-![./images-readme/register-code.png]
+![Register image](./images-readme/register-code.png)
 
 For log in I consult the database to verifie if the email and the password actually exist and are correct and after that I allow the user to enter to the Homepage:
 
-![./images-readme/login-code.png]
+![Login image](./images-readme/login-code.png)
 
 When you are in the homepage you can also log out clicking the **Cerrar sesion** button and this action all the function log_out() to clear the session.
 
