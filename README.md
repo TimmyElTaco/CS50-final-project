@@ -8,7 +8,7 @@
 >CSS, HTML, JavaScript, Python, Flask, Jinja.
 
 ## Explanation of the project
-My final project is a website with the goal of help the old people with the reminders, see the most recent news about the health and if they are from Mexico are allow to see a calendar for the deliver of the support from the goverment.
+My final project is a website aimed at assisting the elderly with reminders, providing access to the latest health-related news, and allowing individuals from Mexico to view a government support calendar.
 
 ### Validation
 
@@ -25,21 +25,21 @@ When you are in the homepage you can also log out clicking the **Cerrar sesion**
 
 ### API news
 
-To get the news for the homepage and the news web page I call the api **API news** and print all of this in HTML with Jinja:
+To get the news for the homepage and the news web page I call the api **API news** and print all the retrieved information in HTML using Jinja:
 
 ![The call api function](./images-readme/call-api.png)
 
 ### Reminders
 
-The user have the hability to create reminders and view them in the home page and the reminders page, to create a new reminder I use sqlite3 and flask to create a table where I can store the reminder, the date and the user id to know who create this reminder:
+Users have the ability to create reminders, view them on the home page and the reminders page. To create a new reminder, I use sqlite3 and flask to create a table where I can store the reminder, date and user id to identify the creator:
 
 ![The add reminder function](./images-readme/add-reminder.png)
 
-For view the reminders I create a function to get the reminders based on the id of the current user.
+For viewing reminders I developed a function to get the reminders based on the id of the current user.
 
 To delete the reminders I create a route to delete the reminder, based on its id:
 
-![The delete function](.images-readme/delete-reminder.png)
+![The delete function](./images-readme/delete-reminder.png)
 
 ## Pictures
 
