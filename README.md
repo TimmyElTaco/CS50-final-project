@@ -27,35 +27,35 @@ When you are in the homepage you can also log out clicking the **Cerrar sesion**
 
 To get the news for the homepage and the news web page I call the api **API news** and print all of this in HTML with Jinja:
 
-![./images-readme/call-api.png]
+![The call api function](./images-readme/call-api.png)
 
 ### Reminders
 
 The user have the hability to create reminders and view them in the home page and the reminders page, to create a new reminder I use sqlite3 and flask to create a table where I can store the reminder, the date and the user id to know who create this reminder:
 
-![./images-readme/add-reminder.png]
+![The add reminder function](./images-readme/add-reminder.png)
 
 For view the reminders I create a function to get the reminders based on the id of the current user.
 
 To delete the reminders I create a route to delete the reminder, based on its id:
 
-![.images-readme/delete-reminder.png]
+![The delete function](.images-readme/delete-reminder.png)
 
 ## Pictures
 
 ### Sections
 
-| Login                         | Register                         |
-| ----------------------------- | -------------------------------- |
-| ![./images-readme/login.jpeg] | ![./images-readme/register.jpeg] |
+| Login                                        | Register                                           |
+| -------------------------------------------- | -------------------------------------------------- |
+| ![Login picture](./images-readme/login.jpeg) | ![Register picture](./images-readme/register.jpeg) |
 
-| Reminders                         | Supports                         |
-| --------------------------------- | -------------------------------- |
-| ![./images-readme/reminders.jpeg] | ![./images-readme/supports.jpeg] |
+| Reminders                                            | Supports                                           |
+| ---------------------------------------------------- | -------------------------------------------------- |
+| ![Reminders picture](./images-readme/reminders.jpeg) | ![Supports picture](./images-readme/supports.jpeg) |
 
-| News                         | Homepage                         |
-| ---------------------------- | -------------------------------- |
-| ![./images-readme/news.jpeg] | ![./images-readme/homepage.jpeg] |
+| News                                       | Homepage                                           |
+| ------------------------------------------ | -------------------------------------------------- |
+| ![News picture](./images-readme/news.jpeg) | ![Homepage picture](./images-readme/homepage.jpeg) |
 
 
 ## About CS50
